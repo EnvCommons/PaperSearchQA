@@ -52,12 +52,7 @@ Multi-turn. Agents can perform multiple web searches and URL fetches before subm
 
 ## Environment Difficulty
 
-| Model | Accuracy |
-|-------|----------|
-| Search-R1 (Qwen2.5-7B) | 51.0% |
-| RAG Baseline | 36.5% |
-
-RL-trained search agents outperform standard retrieval-augmented generation by 14.5 percentage points on this benchmark.
+[Put env difficulty statistics here]
 
 ## Other Environment Requirements
 
