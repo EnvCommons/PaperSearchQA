@@ -1,6 +1,6 @@
 # PaperSearchQA
 
-[![OpenReward Environment](https://img.shields.io/badge/%E2%AD%90%20OpenReward-Environment-f7e6cc)](https://openreward.ai/EnvCommons/PaperSearchQA) [![Hugging Face Dataset](https://img.shields.io/badge/Hugging%20Face-Dataset-orange)](https://huggingface.co/datasets/jmhb/PaperSearchQA)
+[![OpenReward Environment](https://img.shields.io/badge/%E2%AD%90%20OpenReward-Environment-f7e6cc)](https://www.openreward.ai/GeneralReasoning/PaperSearchQA) [![Hugging Face Dataset](https://img.shields.io/badge/Hugging%20Face-Dataset-orange)](https://huggingface.co/datasets/jmhb/PaperSearchQA)
 
 ## Description
 
@@ -19,7 +19,7 @@ Agents are given a standard environment with no sandbox or file system access.
 
 ## License
 
-[ORLv1](https://openreward.ai/orlv1.md).
+[MIT](https://opensource.org/licenses/MIT).
 
 ## Tasks
 
@@ -52,7 +52,12 @@ Multi-turn. Agents can perform multiple web searches and URL fetches before subm
 
 ## Environment Difficulty
 
-PaperSearchQA evaluates biomedical question answering with web research capabilities across 10 scientific domains.
+| Model | Accuracy |
+|-------|----------|
+| Search-R1 (Qwen2.5-7B) | 51.0% |
+| RAG Baseline | 36.5% |
+
+RL-trained search agents outperform standard retrieval-augmented generation by 14.5 percentage points on this benchmark.
 
 ## Other Environment Requirements
 
@@ -66,10 +71,13 @@ Agents in PaperSearchQA answer biomedical questions using web search in a standa
 ## Citation
 
 ```bibtex
-@article{papersearchqa2025,
-  title={PaperSearchQA: A Biomedical Question Answering Dataset with Web Search},
-  author={jmhb},
-  journal={arXiv preprint arXiv:2601.18207},
-  year={2025}
+@misc{burgess2026papersearchqa,
+  title={PaperSearchQA: Learning to Search and Reason over Scientific Papers with RLVR},
+  author={James Burgess and Jan N. Hansen and Duo Peng and Yuhui Zhang and Alejandro Lozano and Min Woo Sun and Emma Lundberg and Serena Yeung-Levy},
+  year={2026},
+  eprint={2601.18207},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2601.18207}
 }
 ```

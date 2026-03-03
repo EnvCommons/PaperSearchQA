@@ -20,8 +20,7 @@ async def main() -> None:
     oai_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 
     environment = or_client.environments.get(
-        name="local/PaperSearchQA",
-        base_url="http://localhost:8080"
+        name="GeneralReasoning/PaperSearchQA"
     )
     tasks = await environment.list_tasks(split="train")
     tools = await environment.list_tools(format="openai")
