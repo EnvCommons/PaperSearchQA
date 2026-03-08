@@ -46,6 +46,8 @@ Data consists of Parquet files (`train-00000-of-00001.parquet`, `test-00000-of-0
 | `fetch_url` | Fetch full content from a specific URL. |
 | `submit_answer` | Submit your final answer for LLM grading. Ends the episode. |
 
+Note that the `fetch_url` and `web_search` tools require Tavily, but are optional. If you want to use a different provider for search you can exclude these tools and use external tools instead.
+
 ## Time Horizon
 
 Multi-turn. Agents can perform multiple web searches and URL fetches before submitting a final answer.
