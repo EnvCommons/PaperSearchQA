@@ -8,6 +8,7 @@ from openreward import AsyncOpenReward
 MODEL_NAME = os.environ.get("MODEL_NAME", "gpt-5.2")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY")
+OPENREWARD_API_KEY = os.environ.get("OPENREWARD_API_KEY")
 
 if not OPENAI_API_KEY:
     raise ValueError("OPENAI_API_KEY environment variable must be set")
@@ -35,7 +36,8 @@ async def main() -> None:
         task=task,
         secrets={
             "openai_api_key": OPENAI_API_KEY,
-            "tavily_api_key": TAVILY_API_KEY
+            **({"tavily_api_key": TAVILY_API_KEY} if TAVILY_API_KEY else {}),
+            **({"api_key": OPENREWARD_API_KEY} if OPENREWARD_API_KEY else {}),
         }
     ) as session:
         prompt = await session.get_prompt()

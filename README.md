@@ -32,7 +32,7 @@ Questions span 10 biomedical categories with answers sourced from PubMed papers.
 
 ## Reward Structure
 
-This is a multi-turn environment. Agents can use `web_search` and `fetch_url` tools to gather information, then submit via `submit_answer`. An LLM grader (gpt-5-mini) evaluates semantic equivalence against multiple golden answers, handling synonyms, paraphrasing, and equivalent medical terminology. Reward is binary: 1.0 if correct, 0.0 if incorrect.
+This is a multi-turn environment. Agents can use `web_search` and `web_fetch` tools to gather information, then submit via `submit_answer`. An LLM grader (gpt-5-mini) evaluates semantic equivalence against multiple golden answers, handling synonyms, paraphrasing, and equivalent medical terminology. Reward is binary: 1.0 if correct, 0.0 if incorrect.
 
 ## Data
 
@@ -42,11 +42,11 @@ Data consists of Parquet files (`train-00000-of-00001.parquet`, `test-00000-of-0
 
 | Tool | Description |
 |------|-------------|
-| `web_search` | Search the web using Tavily API. Returns titles, URLs, and snippets. |
-| `fetch_url` | Fetch full content from a specific URL. |
+| `web_search` | Search the web. Returns titles, URLs, and snippets. |
+| `web_fetch` | Fetch full content from a specific URL. |
 | `submit_answer` | Submit your final answer for LLM grading. Ends the episode. |
 
-Note that the `fetch_url` and `web_search` tools require Tavily, but are optional. If you want to use a different provider for search you can exclude these tools and use external tools instead.
+`web_search` and `web_fetch` come from the OpenReward SDK's `WebToolset`, so the provider is configuration on the environment server rather than code here: unset (the default) uses `backsearch`, GR's backdated corpus; `OPENREWARD_SEARCH_BACKEND=tavily` routes to Tavily's live web instead.
 
 ## Time Horizon
 
@@ -59,7 +59,7 @@ Multi-turn. Agents can perform multiple web searches and URL fetches before subm
 ## Other Environment Requirements
 
 - OpenAI API key required for LLM-based grading. Pass via `secrets={"openai_api_key": "..."}`.
-- Tavily API key required for web search. Pass via `secrets={"tavily_api_key": "..."}`.
+- Search credentials depend on the configured backend: `api_key` for the default backsearch backend, or `tavily_api_key` when the server runs with `OPENREWARD_SEARCH_BACKEND=tavily`. Both fall back to the server process environment (`OPENREWARD_API_KEY` / `TAVILY_API_KEY`).
 
 ## Safety
 
